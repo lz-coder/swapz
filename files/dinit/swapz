@@ -1,0 +1,6 @@
+type = scripted
+before = login.target
+command = /usr/bin/swapz start
+stop-command = /usr/bin/swapz stop
+restart = true
+logfile = /var/log/swapz.log
