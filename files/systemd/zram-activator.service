@@ -1,0 +1,12 @@
+[Unit]
+Description=Activate swap on zram
+After=multi-user.target
+
+[Service]
+Type=oneshot
+ExecStart=/usr/local/bin/zram-activator start
+ExecStop=/usr/local/bin/zram-activator stop
+RemainAfterExit=yes
+
+[Install]
+WantedBy=multi-user.target
