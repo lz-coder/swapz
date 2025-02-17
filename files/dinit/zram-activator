@@ -1,0 +1,6 @@
+type = scripted
+after = login.target
+command = /usr/bin/zram-activator start
+stop-command = /usr/bin/zram-activator stop
+restart = true
+logfile = /var/log/zram-activator.log

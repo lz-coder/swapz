@@ -1,8 +1,0 @@
-# size of zram device e.g: 12128KiB or 12GiB or 12TiB
-#CONFIG_ZRAM_SIZE=
-
-# algorithm of zram device e.g: zsrd, lzo etc
-#CONFIG_ZRAM_ALGORITHM=
-
-# number of zram streams, default is nproc
-#CONFIG_ZRAM_STREAMS=

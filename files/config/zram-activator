@@ -1,0 +1,11 @@
+# size of zram device e.g: 12128KiB or 12GiB or 12TiB, default is RAM size
+#ZRAM_SIZE=
+
+# algorithm of zram device e.g: zstd or lzo, default is zstd
+#ZRAM_ALGORITHM=
+
+# number of zram streams, default is nproc
+#ZRAM_STREAMS=
+
+# priority of the zram device, default is 100
+#ZRAM_PRIORITY=
