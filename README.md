@@ -1,5 +1,5 @@
-# SWAPZ - Swap on ZRAM for Chimera Linux and Dinit systems
-Simple utility to enable swap on zram support for Chimera Linux.
+# zram-activator
+Simple utility to enable swap on zram support on Linux
 
 references:
 https://code.launchpad.net/~elementary-os/elementaryos/zramswap-enabler
