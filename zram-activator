@@ -1,41 +1,35 @@
 #!/bin/sh
 
-log() {
-	echo [$(date)] $1
-}
-
-CONFIG=/etc/default/swapz
+CONFIG=/etc/zram-activator.conf
 ZRAM_SIZE="$(grep MemTotal /proc/meminfo | grep -E --only-matching '[[:digit:]]+')KiB"
 ZRAM_ALGORITHM="zstd"
 ZRAM_STREAMS="$(nproc)"
+ZRAM_PRIORITY=100
 
 # source global config if present
 [ -r $CONFIG ] && . $CONFIG
 
-[ $CONFIG_ZRAM_SIZE ] && ZRAM_SIZE=$CONFIG_ZRAM_SIZE
-[ $CONFIG_ZRAM_ALGORITHM ] && ZRAM_ALGORITHM=$CONFIG_ZRAM_ALGORITHM
-
 start() {
-	log "loading zram module"
+	echo "loading zram module"
 	modprobe zram
 
-	log "creating zram device { algorithm:$ZRAM_ALGORITHM, size:$ZRAM_SIZE, streams:$ZRAM_STREAMS }"
+	echo "creating zram device"
 	zramctl /dev/zram0 --algorithm $ZRAM_ALGORITHM --size $ZRAM_SIZE
 
-	log "creating swap"
+	echo "creating swap"
 	mkswap -U clear /dev/zram0
 
-	log "activating swap"
-	swapon --discard --priority 100 /dev/zram0
+	echo "activating swap"
+	swapon --discard --priority $ZRAM_PRIORITY /dev/zram0
 
-	log "swap on zram activated..."
+	echo "swap on zram activated"
 }
 
 stop() {
-	log "desactivating swap"
+	echo "desactivating swap"
 	swapoff /dev/zram0
 
-	log "disabling zram module"
+	echo "disabling zram module"
 	modprobe -r zram
 }
 
